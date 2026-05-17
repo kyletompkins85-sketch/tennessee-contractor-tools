@@ -53,6 +53,54 @@
     }).format(safeValue);
   }
 
+  function formatNumberCommas(value) {
+    if (!Number.isFinite(value) || value === 0) return "";
+    return new Intl.NumberFormat("en-US", {
+      maximumFractionDigits: 0
+    }).format(value);
+  }
+
+  function formatMoneyInputValue(input) {
+    var raw = input.value.trim();
+    if (raw === "") {
+      input.value = "";
+      return;
+    }
+
+    input.value = formatNumberCommas(parseMoney(raw));
+  }
+
+  function formatMoneyInputLive(input) {
+    var start = input.selectionStart || 0;
+    var before = input.value;
+    var digitsBeforeCursor = before.slice(0, start).replace(/\D/g, "").length;
+    var digits = before.replace(/\D/g, "");
+
+    if (digits === "") {
+      input.value = "";
+      return;
+    }
+
+    digits = digits.replace(/^0+/, "") || "0";
+    var formatted = formatNumberCommas(Number(digits));
+    input.value = formatted;
+
+    var newPos = formatted.length;
+    var seen = 0;
+
+    for (var i = 0; i < formatted.length; i++) {
+      if (/\d/.test(formatted.charAt(i))) {
+        seen += 1;
+        if (seen >= digitsBeforeCursor) {
+          newPos = i + 1;
+          break;
+        }
+      }
+    }
+
+    input.setSelectionRange(newPos, newPos);
+  }
+
   function getTransactionType() {
     var radio = document.querySelector('input[name="transactionType"]:checked');
     return radio ? radio.value : "initial";
@@ -588,15 +636,13 @@
   }
 
   function formatMoneyInput(event) {
-    var input = event.target;
-    var value = parseMoney(input.value);
-
-    if (input.value.trim() === "") return;
-
-    input.value = formatCurrency(value);
+    formatMoneyInputValue(event.target);
   }
 
   document.querySelectorAll(".money-input").forEach(function (input) {
+    input.addEventListener("input", function (event) {
+      formatMoneyInputLive(event.target);
+    });
     input.addEventListener("blur", formatMoneyInput);
   });
 

@@ -45,6 +45,14 @@
     .material-symbols-outlined {
       font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
     }
+    .money-input {
+      color: #0f172a;
+    }
+    .money-input::placeholder {
+      color: #cbd5e1;
+      opacity: 1;
+      font-weight: 400;
+    }
   </style>
 </head>
 <body class="bg-background text-on-background antialiased">
@@ -135,22 +143,22 @@
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div class="space-y-2">
                 <label class="text-sm font-semibold text-on-surface-variant" for="currentAssets">Current assets</label>
-                <input id="currentAssets" type="text" inputmode="decimal" placeholder="$150,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
+                <input id="currentAssets" type="text" inputmode="decimal" placeholder="e.g. 150,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
                 <p class="field-hint text-xs text-slate-400">Cash, receivables, inventory. From the balance sheet, not revenue.</p>
               </div>
               <div class="space-y-2">
                 <label class="text-sm font-semibold text-on-surface-variant" for="currentLiabilities">Current liabilities</label>
-                <input id="currentLiabilities" type="text" inputmode="decimal" placeholder="$50,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
+                <input id="currentLiabilities" type="text" inputmode="decimal" placeholder="e.g. 50,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
                 <p class="field-hint text-xs text-slate-400">Due within about a year. Do not double-count in total liabilities.</p>
               </div>
               <div class="space-y-2">
                 <label class="text-sm font-semibold text-on-surface-variant" for="totalAssets">Total assets</label>
-                <input id="totalAssets" type="text" inputmode="decimal" placeholder="$300,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
+                <input id="totalAssets" type="text" inputmode="decimal" placeholder="e.g. 300,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
                 <p class="field-hint text-xs text-slate-400">Full statement total, including long-term assets.</p>
               </div>
               <div class="space-y-2">
                 <label class="text-sm font-semibold text-on-surface-variant" for="totalLiabilities">Total liabilities</label>
-                <input id="totalLiabilities" type="text" inputmode="decimal" placeholder="$125,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
+                <input id="totalLiabilities" type="text" inputmode="decimal" placeholder="e.g. 125,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
                 <p class="field-hint text-xs text-slate-400">All liabilities; current portion is included here.</p>
               </div>
             </div>
@@ -202,7 +210,7 @@
               <label class="text-xl font-semibold text-slate-900" for="requestedLimit">Requested monetary limit</label>
               <div class="relative">
                 <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">$</span>
-                <input id="requestedLimit" type="text" inputmode="decimal" placeholder="1,000,000" class="money-input h-16 w-full rounded-lg border-2 border-slate-200 bg-white pl-10 pr-4 text-xl font-bold outline-none transition focus:border-slate-900" />
+                <input id="requestedLimit" type="text" inputmode="decimal" placeholder="e.g. 1,000,000" class="money-input h-16 w-full rounded-lg border-2 border-slate-200 bg-white pl-10 pr-4 text-xl font-bold outline-none transition focus:border-slate-900" />
               </div>
               <p class="field-hint text-sm text-secondary">Optional. Used to compare against the estimate and plan support needed.</p>
             </div>
