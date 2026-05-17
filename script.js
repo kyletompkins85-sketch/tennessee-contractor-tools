@@ -2,7 +2,12 @@
   var assetsInput = document.getElementById("assets");
   var liabilitiesInput = document.getElementById("liabilities");
   var netWorthInput = document.getElementById("net-worth");
+  var licenseLimitInput = document.getElementById("license-limit");
   var resultPlaceholder = document.getElementById("result-placeholder");
+  var navToggle = document.getElementById("nav-toggle");
+  var siteHeader = document.querySelector(".site-header");
+  var siteNav = document.getElementById("site-nav");
+  var yearEl = document.getElementById("year");
 
   function parseAmount(value) {
     if (!value) {
@@ -21,31 +26,36 @@
   }
 
   function updateNetWorth() {
-    var assets = parseAmount(assetsInput.value);
-    var liabilities = parseAmount(liabilitiesInput.value);
-    var netWorth = assets - liabilities;
+    if (!assetsInput || !liabilitiesInput || !netWorthInput) {
+      return;
+    }
+    var netWorth = parseAmount(assetsInput.value) - parseAmount(liabilitiesInput.value);
     netWorthInput.value = formatCurrency(netWorth);
   }
 
   function hasAnyInput() {
     return (
-      assetsInput.value.trim() !== "" ||
-      liabilitiesInput.value.trim() !== "" ||
-      document.getElementById("license-limit").value.trim() !== ""
+      (assetsInput && assetsInput.value.trim() !== "") ||
+      (liabilitiesInput && liabilitiesInput.value.trim() !== "") ||
+      (licenseLimitInput && licenseLimitInput.value.trim() !== "")
     );
   }
 
   function updateResultHint() {
+    if (!resultPlaceholder) {
+      return;
+    }
+
     if (!hasAnyInput()) {
       resultPlaceholder.textContent =
-        "Enter your numbers above. A detailed limit estimate will appear here when the calculator launches.";
+        "Enter your balance sheet figures to see a preview summary. The full limit comparison launches soon.";
       resultPlaceholder.classList.remove("is-active");
       return;
     }
 
-    var limit = parseAmount(document.getElementById("license-limit").value);
-    var netWorth = parseAmount(netWorthInput.value);
-    var limitText = limit > 0 ? formatCurrency(limit) : "your requested limit";
+    var limit = licenseLimitInput ? parseAmount(licenseLimitInput.value) : 0;
+    var netWorth = netWorthInput ? parseAmount(netWorthInput.value) : 0;
+    var limitText = limit > 0 ? "$" + formatCurrency(limit) : "your requested limit";
 
     resultPlaceholder.textContent =
       "Preview: net worth is $" +
@@ -61,10 +71,44 @@
     updateResultHint();
   }
 
-  if (assetsInput && liabilitiesInput && netWorthInput) {
+  if (assetsInput && liabilitiesInput) {
     assetsInput.addEventListener("input", onInputChange);
     liabilitiesInput.addEventListener("input", onInputChange);
-    document.getElementById("license-limit").addEventListener("input", updateResultHint);
+    if (licenseLimitInput) {
+      licenseLimitInput.addEventListener("input", updateResultHint);
+    }
     updateNetWorth();
   }
+
+  if (yearEl) {
+    yearEl.textContent = String(new Date().getFullYear());
+  }
+
+  function closeNav() {
+    if (siteHeader) {
+      siteHeader.classList.remove("is-nav-open");
+    }
+    if (navToggle) {
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  if (navToggle && siteHeader) {
+    navToggle.addEventListener("click", function () {
+      var isOpen = siteHeader.classList.toggle("is-nav-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  if (siteNav) {
+    siteNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeNav);
+    });
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeNav();
+    }
+  });
 })();

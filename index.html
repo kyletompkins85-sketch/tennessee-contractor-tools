@@ -3,144 +3,255 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tennessee Contractor Tools | Free tools for Tennessee contractors</title>
-  <meta name="description" content="Free financial and operational tools for Tennessee contractors. Estimate license limits, check cash flow risk, and plan job profitability." />
+  <title>Tennessee Contractor Tools | Financial tools for Tennessee contractors</title>
+  <meta name="description" content="Estimate license limits, pressure-test cash flow, and understand project risk. Free financial tools built for Tennessee contractors." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="top">
     <div class="container header-inner">
-      <a class="logo" href="#">Tennessee Contractor Tools</a>
+      <a class="logo" href="#top">Tennessee Contractor Tools</a>
+
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Menu</span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="#estimator">Estimator</a>
+        <a href="#why">Why use this</a>
+        <a href="#upcoming">Upcoming tools</a>
+        <a class="nav-cta" href="#estimator">Try the estimator</a>
+      </nav>
     </div>
   </header>
 
   <main>
-    <section id="hero" class="hero">
-      <div class="container hero-inner">
-        <p class="eyebrow">TennesseeContractorTools.com</p>
-        <h1>Free tools for Tennessee contractors</h1>
-        <p class="subhead">
-          Practical calculators to check license limits, cash flow, job risk, and profitability
-          before you commit to the next bid or growth step.
-        </p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#estimator">Try the license limit estimator</a>
-          <a class="btn btn-secondary" href="#upcoming">See upcoming tools</a>
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="badge">Built for Tennessee licensed contractors</p>
+          <h1>Financial tools for Tennessee contractors</h1>
+          <p class="subhead">
+            Estimate license limits, pressure-test cash flow, and understand project risk
+            before bigger jobs create bigger problems.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#estimator">Try the estimator</a>
+            <a class="btn btn-secondary" href="#upcoming">View upcoming tools</a>
+          </div>
+          <ul class="hero-points" aria-label="Key benefits">
+            <li>No account required for the preview</li>
+            <li>Numbers stay in your browser</li>
+            <li>Focused on licensing and job financial risk</li>
+          </ul>
+        </div>
+
+        <div class="hero-panel" aria-hidden="true">
+          <p class="hero-panel-label">At a glance</p>
+          <ul class="hero-panel-stats">
+            <li>
+              <span class="stat-name">License limit check</span>
+              <span class="stat-value">Working capital and net worth</span>
+            </li>
+            <li>
+              <span class="stat-name">Cash flow view</span>
+              <span class="stat-value">Payroll, materials, billing timing</span>
+            </li>
+            <li>
+              <span class="stat-name">Job economics</span>
+              <span class="stat-value">Margin, burden, and retainage</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="estimator" class="tool-preview">
+    <section id="estimator" class="section spotlight">
       <div class="container">
-        <div class="section-intro">
-          <h2>Tennessee Contractor License Limit Estimator</h2>
-          <p>
-            Use your balance sheet numbers to see whether your working capital and net worth
-            may support a requested license limit. This preview helps you prepare before
-            applying or renewing with the state board.
+        <header class="section-header">
+          <p class="section-eyebrow">Tool spotlight</p>
+          <h2>License Limit Estimator</h2>
+          <p class="section-lead">
+            Before you request a higher limit or sign a larger contract, see whether your
+            balance sheet may support it. Enter current assets, liabilities, and your target
+            limit to get a clear starting point for conversations with your CPA or licensing advisor.
           </p>
-        </div>
+        </header>
 
-        <div class="tool-card">
-          <form class="estimator-form" id="estimator-form" novalidate>
-            <div class="form-grid">
-              <label class="field">
-                <span class="field-label">Current assets</span>
-                <span class="field-hint">Cash, receivables, inventory, and other short-term assets</span>
-                <div class="input-wrap">
-                  <span class="input-prefix" aria-hidden="true">$</span>
-                  <input type="text" inputmode="decimal" name="assets" id="assets" placeholder="0" autocomplete="off" />
-                </div>
-              </label>
+        <div class="spotlight-card">
+          <div class="spotlight-card-body">
+            <form class="estimator-form" id="estimator-form" novalidate>
+              <div class="form-grid">
+                <label class="field">
+                  <span class="field-label">Current assets</span>
+                  <span class="field-hint">Cash, receivables, inventory, and other short-term assets</span>
+                  <div class="input-wrap">
+                    <span class="input-prefix" aria-hidden="true">$</span>
+                    <input type="text" inputmode="decimal" name="assets" id="assets" placeholder="250,000" autocomplete="off" />
+                  </div>
+                </label>
 
-              <label class="field">
-                <span class="field-label">Current liabilities</span>
-                <span class="field-hint">Payables, short-term debt, and other amounts due within a year</span>
-                <div class="input-wrap">
-                  <span class="input-prefix" aria-hidden="true">$</span>
-                  <input type="text" inputmode="decimal" name="liabilities" id="liabilities" placeholder="0" autocomplete="off" />
-                </div>
-              </label>
+                <label class="field">
+                  <span class="field-label">Current liabilities</span>
+                  <span class="field-hint">Payables, short-term debt, and amounts due within a year</span>
+                  <div class="input-wrap">
+                    <span class="input-prefix" aria-hidden="true">$</span>
+                    <input type="text" inputmode="decimal" name="liabilities" id="liabilities" placeholder="120,000" autocomplete="off" />
+                  </div>
+                </label>
 
-              <label class="field">
-                <span class="field-label">Net worth</span>
-                <span class="field-hint">Preview from assets minus liabilities (full rules coming soon)</span>
-                <div class="input-wrap input-wrap-readonly">
-                  <span class="input-prefix" aria-hidden="true">$</span>
-                  <input type="text" name="net-worth" id="net-worth" placeholder="0" readonly tabindex="-1" aria-readonly="true" />
-                </div>
-              </label>
+                <label class="field">
+                  <span class="field-label">Net worth</span>
+                  <span class="field-hint">Calculated from assets minus liabilities</span>
+                  <div class="input-wrap input-wrap-readonly">
+                    <span class="input-prefix" aria-hidden="true">$</span>
+                    <input type="text" name="net-worth" id="net-worth" placeholder="0" readonly tabindex="-1" aria-readonly="true" />
+                  </div>
+                </label>
 
-              <label class="field">
-                <span class="field-label">Requested license limit</span>
-                <span class="field-hint">Maximum contract amount you want on your license</span>
-                <div class="input-wrap">
-                  <span class="input-prefix" aria-hidden="true">$</span>
-                  <input type="text" inputmode="decimal" name="license-limit" id="license-limit" placeholder="0" autocomplete="off" />
-                </div>
-              </label>
-            </div>
+                <label class="field">
+                  <span class="field-label">Requested license limit</span>
+                  <span class="field-hint">Maximum single contract amount on your license</span>
+                  <div class="input-wrap">
+                    <span class="input-prefix" aria-hidden="true">$</span>
+                    <input type="text" inputmode="decimal" name="license-limit" id="license-limit" placeholder="500,000" autocomplete="off" />
+                  </div>
+                </label>
+              </div>
 
-            <div class="form-actions">
-              <button type="button" class="btn btn-primary btn-estimate" id="estimate-btn" disabled>
-                Estimate my limit
-              </button>
-              <p class="form-note">Full Tennessee licensing rules and working capital checks are not active in this preview yet.</p>
-            </div>
-          </form>
+              <div class="form-footer">
+                <button type="button" class="btn btn-primary btn-estimate" id="estimate-btn" disabled>
+                  Estimate my limit
+                </button>
+                <p class="form-note">
+                  Full Tennessee board rules and working capital formulas are not wired up in this preview.
+                </p>
+              </div>
+            </form>
+          </div>
 
           <aside class="result-panel" id="result-panel" aria-live="polite">
-            <p class="result-label">Preview result</p>
+            <p class="result-label">Preview output</p>
             <p class="result-placeholder" id="result-placeholder">
-              Enter your numbers above. A detailed limit estimate will appear here when the calculator launches.
+              Enter your balance sheet figures to see a preview summary. The full limit comparison launches soon.
             </p>
           </aside>
         </div>
       </div>
     </section>
 
-    <section id="upcoming" class="upcoming">
+    <section id="why" class="section why">
       <div class="container">
-        <div class="section-intro">
-          <h2>Upcoming tools</h2>
-          <p>More calculators for day-to-day contractor financial decisions, all built for Tennessee operators.</p>
-        </div>
+        <header class="section-header section-header-center">
+          <p class="section-eyebrow">Why contractors use this</p>
+          <h2>Clarity before you commit capital or credibility</h2>
+          <p class="section-lead">
+            Growth decisions in construction are rarely just about sales. They are about whether
+            your license, cash, and crew can carry the next job without putting the business at risk.
+          </p>
+        </header>
 
-        <ul class="tool-list">
-          <li class="tool-item">
+        <ul class="benefit-grid">
+          <li class="benefit-card">
+            <span class="benefit-icon" aria-hidden="true"></span>
+            <h3>Know your limit before the board asks</h3>
+            <p>
+              Tennessee licensing ties contract limits to financial strength. A quick estimate
+              helps you avoid surprises at renewal or when bidding above your current cap.
+            </p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-icon benefit-icon-alt" aria-hidden="true"></span>
+            <h3>See cash risk before payroll week</h3>
+            <p>
+              Upcoming tools will map billing cycles, retainage, and labor cost so you can spot
+              shortfalls weeks ahead instead of after suppliers call.
+            </p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-icon benefit-icon-third" aria-hidden="true"></span>
+            <h3>Price jobs with margin in mind</h3>
+            <p>
+              Profitability and burden calculators are on the roadmap so you can sanity-check
+              bids against real labor and overhead, not gut feel alone.
+            </p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-icon benefit-icon-fourth" aria-hidden="true"></span>
+            <h3>Stay independent and practical</h3>
+            <p>
+              No sales funnel, no lead forms in the preview. Just straightforward math you can
+              take to your accountant, surety agent, or bonding partner.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="upcoming" class="section upcoming">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">Roadmap</p>
+          <h2>Upcoming tools</h2>
+          <p class="section-lead">
+            The estimator is first. These calculators are next, each designed for how Tennessee
+            contractors actually run jobs and manage cash.
+          </p>
+        </header>
+
+        <ul class="tools-grid">
+          <li class="tool-card">
+            <span class="tool-tag">Coming soon</span>
             <h3>Cash Flow Risk Check</h3>
-            <p>Spot gaps between project billing, payroll dates, and material costs before they become a crisis.</p>
+            <p>Model inflows and outflows across a job timeline to flag weeks where cash may run tight.</p>
           </li>
-          <li class="tool-item">
+          <li class="tool-card">
+            <span class="tool-tag">Coming soon</span>
             <h3>Payroll Burden Calculator</h3>
-            <p>Estimate true labor cost per hour including taxes, insurance, and benefits on Tennessee jobs.</p>
+            <p>Convert wages into loaded labor cost per hour including taxes, insurance, and benefits.</p>
           </li>
-          <li class="tool-item">
+          <li class="tool-card">
+            <span class="tool-tag">Coming soon</span>
             <h3>Job Profitability Calculator</h3>
-            <p>Compare bid price to expected costs and margin so you know if a job is worth taking.</p>
+            <p>Compare bid price to direct costs and overhead so you know the break-even before you mobilize.</p>
           </li>
-          <li class="tool-item">
+          <li class="tool-card">
+            <span class="tool-tag">Coming soon</span>
             <h3>Retainage Impact Calculator</h3>
-            <p>See how withheld retainage affects cash on hand and whether you can carry the job to closeout.</p>
+            <p>Quantify how withheld retainage affects working cash through project closeout.</p>
           </li>
         </ul>
       </div>
     </section>
 
     <section class="disclaimer" aria-label="Important notice">
-      <div class="container">
+      <div class="container disclaimer-inner">
+        <p class="disclaimer-title">Educational use only</p>
         <p>
-          Educational estimates only. Not accounting, legal, or licensing advice. Final requirements
-          depend on Tennessee licensing rules and professional review.
+          These tools produce estimates for planning and discussion. They are not accounting,
+          legal, tax, or licensing advice. Final license limits and financial requirements depend
+          on Tennessee rules, board interpretation, and review by qualified professionals.
         </p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-brand">TennesseeContractorTools.com</p>
-      <p class="footer-tagline">Independent resource for contractor financial planning.</p>
+    <div class="container footer-grid">
+      <div class="footer-brand-block">
+        <p class="footer-brand">TennesseeContractorTools.com</p>
+        <p class="footer-tagline">Independent resource for contractor financial planning.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#estimator">Estimator</a>
+        <a href="#why">Why use this</a>
+        <a href="#upcoming">Upcoming tools</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Tennessee Contractor Tools. All rights reserved.</p>
     </div>
   </footer>
 
