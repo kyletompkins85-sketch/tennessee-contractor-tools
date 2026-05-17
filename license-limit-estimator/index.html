@@ -43,6 +43,22 @@
 
       <div class="grid gap-8 lg:grid-cols-5">
         <form id="tnLimitEstimatorForm" class="lg:col-span-3 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <aside class="estimator-prep mb-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <p class="text-sm font-semibold text-slate-900">You'll need</p>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Figures from the balance sheet for the <strong class="font-semibold text-slate-800">business or entity applying for the license</strong>.
+              Do not enter annual revenue, job totals, or personal numbers unless they belong on that entity's statement.
+            </p>
+            <ul class="mt-3 grid gap-1 text-sm text-slate-700 sm:grid-cols-2">
+              <li>Current assets</li>
+              <li>Current liabilities</li>
+              <li>Total assets</li>
+              <li>Total liabilities</li>
+              <li>Receivables over 90 days old (if any)</li>
+              <li>Line of credit or guarantor support (if you plan to rely on them)</li>
+            </ul>
+          </aside>
+
           <div class="grid gap-5 sm:grid-cols-2">
             <div class="sm:col-span-2">
               <label for="transactionType" class="block text-sm font-semibold text-slate-800">
@@ -67,6 +83,7 @@
                 Current assets
               </label>
               <input id="currentAssets" type="text" inputmode="decimal" placeholder="$150,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
+              <p class="field-hint mt-2">Short-term assets expected to convert within about a year (cash, receivables, inventory, etc.).</p>
             </div>
 
             <div>
@@ -74,6 +91,7 @@
                 Current liabilities
               </label>
               <input id="currentLiabilities" type="text" inputmode="decimal" placeholder="$50,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
+              <p class="field-hint mt-2">Amounts due within about a year. Do not list the same debt twice elsewhere.</p>
             </div>
 
             <div>
@@ -81,6 +99,7 @@
                 Total assets
               </label>
               <input id="totalAssets" type="text" inputmode="decimal" placeholder="$300,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
+              <p class="field-hint mt-2">Everything on the balance sheet. Often larger than current assets because it includes equipment and other long-term assets.</p>
             </div>
 
             <div>
@@ -88,6 +107,7 @@
                 Total liabilities
               </label>
               <input id="totalLiabilities" type="text" inputmode="decimal" placeholder="$125,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
+              <p class="field-hint mt-2">All liabilities on the statement. Split between current and long-term portions when possible.</p>
             </div>
 
             <div>
@@ -95,8 +115,8 @@
                 Receivables older than 90 days
               </label>
               <input id="agedReceivables" type="text" inputmode="decimal" placeholder="$0" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-              <p class="mt-2 text-xs leading-5 text-slate-500">
-                Subtracted from current assets for this estimate.
+              <p class="field-hint mt-2">
+                Enter only the portion of receivables that are more than 90 days past due. This amount is subtracted from current assets. Do not subtract it again from total assets.
               </p>
             </div>
 
@@ -105,8 +125,8 @@
                 Line of credit amount
               </label>
               <input id="lineOfCredit" type="text" inputmode="decimal" placeholder="$0" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-              <p class="mt-2 text-xs leading-5 text-slate-500">
-                Added to working capital only. Counted at 50% if working capital is negative before LOC.
+              <p class="field-hint mt-2">
+                Enter the unused line of credit you may rely on in the filing. It is not already counted in current liabilities. This estimator adds it to working capital only, not net worth. If working capital is negative before the LOC, only 50% of the LOC may count.
               </p>
             </div>
 
@@ -115,12 +135,15 @@
                 Supplemental guarantor support
               </label>
               <input id="guarantorSupport" type="text" inputmode="decimal" placeholder="$0" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-              <p class="mt-2 text-xs leading-5 text-slate-500">
-                Optional. This estimator counts supplemental support at 50% toward both working capital and net worth.
+              <p class="field-hint mt-2">
+                Optional personal or parent-company support documented for the filing. Enter the gross support amount. This estimator counts 50% toward both working capital and net worth. It does not replace the entity's own numbers on the balance sheet.
               </p>
             </div>
 
-            <div class="sm:col-span-2 grid gap-3 rounded-2xl bg-slate-50 p-4">
+            <div class="sm:col-span-2 rounded-2xl bg-slate-50 p-4">
+              <p class="mb-3 text-sm font-semibold text-slate-900">Additional filing-strength factors (optional)</p>
+              <p class="mb-3 text-xs leading-5 text-slate-600">These do not change the formula result. They help you think about how strong the overall filing may look.</p>
+              <div class="grid gap-3">
               <label class="flex gap-3 text-sm text-slate-700">
                 <input id="cashOnlyFlag" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900">
                 <span>Cash-only or no fixed assets</span>
@@ -135,6 +158,7 @@
                 <input id="experienceConcernFlag" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900">
                 <span>Requested limit may exceed demonstrated project experience</span>
               </label>
+              </div>
             </div>
           </div>
 
@@ -146,65 +170,83 @@
         <div class="lg:col-span-2">
           <div id="tnLimitResults" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
             <div class="flex items-start justify-between gap-4">
-              <div>
+              <div class="min-w-0 flex-1">
                 <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                  Estimated result
+                  Your filing estimate
                 </p>
-                <h3 id="resultHeadline" class="mt-2 text-2xl font-bold text-slate-950">
-                  Enter figures to estimate support
+                <h3 id="resultInterpretation" class="mt-2 text-xl font-bold leading-snug text-slate-950 sm:text-2xl">
+                  Enter your numbers and run the estimate to see how your requested limit compares.
                 </h3>
               </div>
-              <div id="confidenceBadge" class="rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
-                Confidence
+              <div id="estimateStrengthBadge" class="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
+                Estimate strength
               </div>
             </div>
 
-            <div class="mt-6 grid gap-3">
-              <div class="rounded-2xl bg-slate-50 p-4">
-                <p class="text-sm text-slate-500">Adjusted Working Capital</p>
-                <p id="adjustedWorkingCapital" class="mt-1 text-2xl font-bold text-slate-950">$0</p>
-              </div>
+            <div id="controllingNumberCard" class="mt-5 hidden rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p class="text-sm font-semibold text-slate-900">Controlling number</p>
+              <p id="controllingNumberValue" class="mt-1 text-lg font-bold text-slate-950">—</p>
+              <p id="controllingNumberExplain" class="mt-2 text-sm leading-6 text-slate-600">
+                Tennessee's conservative formula generally uses 10× the lower of adjusted working capital and adjusted net worth.
+              </p>
+            </div>
 
-              <div class="rounded-2xl bg-slate-50 p-4">
-                <p class="text-sm text-slate-500">Adjusted Net Worth</p>
-                <p id="adjustedNetWorth" class="mt-1 text-2xl font-bold text-slate-950">$0</p>
-              </div>
+            <div id="supportNeededCard" class="mt-4 hidden rounded-2xl border border-slate-200 p-4">
+              <p class="text-sm font-semibold text-slate-900">Support needed for your requested limit</p>
+              <p id="supportNeededText" class="mt-2 text-sm leading-6 text-slate-600"></p>
+            </div>
 
-              <div class="rounded-2xl bg-slate-950 p-4 text-white">
-                <p class="text-sm text-slate-300">Conservative Estimated Limit</p>
-                <p id="conservativeLimit" class="mt-1 text-3xl font-bold">$0</p>
-              </div>
+            <p class="estimator-transparency mt-5 text-sm leading-6 text-slate-600">
+              This tool separates <strong class="font-semibold text-slate-800">formula-based math</strong> from <strong class="font-semibold text-slate-800">filing-strength factors</strong> the board may weigh separately. Experience, documentation, and board review still matter. Use this for planning, not as approval of a limit.
+            </p>
 
-              <div id="renewalDiscretionaryCard" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4" hidden>
-                <p class="text-sm font-semibold text-amber-900">Renewal-only discretionary estimate</p>
-                <p id="renewalDiscretionaryLimit" class="mt-1 text-2xl font-bold text-amber-950">$0</p>
-                <p class="mt-2 text-sm leading-6 text-amber-900">
-                  This is board-discretionary and not guaranteed.
-                </p>
+            <div class="mt-6">
+              <p class="text-sm font-semibold text-slate-900">Formula results</p>
+              <p class="mt-1 text-xs leading-5 text-slate-500">How the conservative limit was calculated from your entries.</p>
+              <div class="mt-3 grid gap-3">
+                <div class="rounded-2xl bg-slate-50 p-4">
+                  <p class="text-sm text-slate-500">Adjusted working capital</p>
+                  <p id="adjustedWorkingCapital" class="mt-1 text-2xl font-bold text-slate-950">$0</p>
+                </div>
+                <div class="rounded-2xl bg-slate-50 p-4">
+                  <p class="text-sm text-slate-500">Adjusted net worth</p>
+                  <p id="adjustedNetWorth" class="mt-1 text-2xl font-bold text-slate-950">$0</p>
+                </div>
+                <div class="rounded-2xl bg-slate-950 p-4 text-white">
+                  <p class="text-sm text-slate-300">Conservative estimated limit</p>
+                  <p id="conservativeLimit" class="mt-1 text-3xl font-bold">$0</p>
+                  <p class="mt-2 text-sm leading-5 text-slate-300">10× the lower of adjusted working capital and adjusted net worth.</p>
+                </div>
+                <div id="renewalDiscretionaryCard" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4" hidden>
+                  <p class="text-sm font-semibold text-amber-900">Renewal-only discretionary estimate</p>
+                  <p id="renewalDiscretionaryLimit" class="mt-1 text-2xl font-bold text-amber-950">$0</p>
+                  <p class="mt-2 text-sm leading-6 text-amber-900">
+                    Renewals may be reviewed differently. This figure is not guaranteed.
+                  </p>
+                </div>
               </div>
             </div>
 
             <div class="mt-6 rounded-2xl border border-slate-200 p-4">
-              <p class="text-sm font-semibold text-slate-900">Requested limit comparison</p>
-              <p id="comparisonText" class="mt-2 text-sm leading-6 text-slate-600">
-                Results will appear after calculation.
-              </p>
-            </div>
-
-            <div class="mt-4 rounded-2xl border border-slate-200 p-4">
-              <p class="text-sm font-semibold text-slate-900">Filing guidance</p>
+              <p class="text-sm font-semibold text-slate-900">Statement type guidance</p>
               <p id="filingGuidance" class="mt-2 text-sm leading-6 text-slate-600">
                 Based on current research, guidance will appear after calculation.
               </p>
             </div>
 
-            <div id="riskFlagsWrap" class="mt-4 hidden">
-              <p class="mb-2 text-sm font-semibold text-slate-900">Risk flags</p>
-              <div id="riskFlags" class="grid gap-2"></div>
+            <div id="formulaNotesWrap" class="mt-4 hidden">
+              <p class="mb-2 text-sm font-semibold text-slate-900">How your entries affected the formula</p>
+              <div id="formulaNotes" class="grid gap-2"></div>
+            </div>
+
+            <div id="filingStrengthWrap" class="mt-4 hidden">
+              <p class="mb-1 text-sm font-semibold text-slate-900">Additional filing-strength factors</p>
+              <p class="mb-2 text-xs leading-5 text-slate-600">These do not automatically change the formula, but they may affect how strong the filing appears.</p>
+              <div id="filingStrengthFactors" class="grid gap-2"></div>
             </div>
 
             <div class="mt-6 rounded-2xl bg-slate-50 p-4 text-xs leading-5 text-slate-600">
-              These tools produce educational planning estimates only. They are not accounting, tax, legal, or licensing advice. Tennessee licensing outcomes depend on official rules, board discretion, documentation quality, experience, and professional review.
+              Educational planning estimates only. Not accounting, tax, legal, or licensing advice. Tennessee outcomes depend on official rules, board discretion, documentation, and professional review.
             </div>
           </div>
         </div>
