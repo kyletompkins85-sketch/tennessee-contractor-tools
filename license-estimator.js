@@ -11,7 +11,6 @@
   ];
 
   var ids = {
-    transactionType: "transactionType",
     requestedLimit: "requestedLimit",
     currentAssets: "currentAssets",
     currentLiabilities: "currentLiabilities",
@@ -54,9 +53,14 @@
     }).format(safeValue);
   }
 
+  function getTransactionType() {
+    var radio = document.querySelector('input[name="transactionType"]:checked');
+    return radio ? radio.value : "initial";
+  }
+
   function getInputs() {
     return {
-      transactionType: el(ids.transactionType).value,
+      transactionType: getTransactionType(),
       requestedLimit: parseMoney(el(ids.requestedLimit).value),
       currentAssets: parseMoney(el(ids.currentAssets).value),
       currentLiabilities: parseMoney(el(ids.currentLiabilities).value),
@@ -388,19 +392,49 @@
 
   function setEstimateStrengthBadge(strength) {
     var badge = el("estimateStrengthBadge");
+    var quality = el("estimateQualityLabel");
 
-    if (!badge) return;
+    if (badge) {
+      badge.textContent = strength.label;
+      badge.className = "shrink-0 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide";
 
-    badge.textContent = strength.label;
-    badge.className = "shrink-0 rounded-full px-3 py-1 text-sm font-semibold";
-
-    if (strength.level === "high") {
-      badge.classList.add("bg-emerald-100", "text-emerald-800");
-    } else if (strength.level === "medium") {
-      badge.classList.add("bg-amber-100", "text-amber-800");
-    } else {
-      badge.classList.add("bg-rose-100", "text-rose-800");
+      if (strength.level === "high") {
+        badge.classList.add("bg-emerald-500/20", "text-emerald-300");
+      } else if (strength.level === "medium") {
+        badge.classList.add("bg-amber-500/20", "text-amber-300");
+      } else {
+        badge.classList.add("bg-rose-500/20", "text-rose-300");
+      }
     }
+
+    if (quality) {
+      quality.textContent = strength.label;
+      quality.className = "mt-1 inline-block rounded px-2 py-1 text-sm font-semibold";
+
+      if (strength.level === "high") {
+        quality.classList.add("bg-success-green/10", "text-success-green");
+      } else if (strength.level === "medium") {
+        quality.classList.add("bg-warning-amber/10", "text-amber-700");
+      } else {
+        quality.classList.add("bg-rose-100", "text-rose-700");
+      }
+    }
+  }
+
+  function formatLimitAmount(value) {
+    return formatCurrency(value).replace(/^\$/, "");
+  }
+
+  function getLimitingFactorHero(result) {
+    if (result.limitingSide === "workingCapital") {
+      return "Your limit is constrained primarily by working capital. Improving current assets, reducing current liabilities, or addressing aged receivables may help.";
+    }
+    return "Your limit is constrained primarily by net worth. Improving total assets, reducing total liabilities, or strengthening equity may help.";
+  }
+
+  function getCurrentRatio(inputs) {
+    if (inputs.currentLiabilities <= 0) return null;
+    return inputs.currentAssets / inputs.currentLiabilities;
   }
 
   function renderFlagList(containerId, wrapId, items) {
@@ -487,6 +521,9 @@
 
     renderWhatThisMeans(whatThisMeans);
 
+    var limitingHero = el("limitingFactorHero");
+    if (limitingHero) limitingHero.textContent = getLimitingFactorHero(result);
+
     el("limitingFactorValue").textContent = limiting.label;
     el("limitingFactorExplain").textContent =
       limiting.detail + " The conservative estimate generally uses 10× the lower of adjusted working capital and adjusted net worth.";
@@ -495,9 +532,27 @@
     el("nwSupportLevel").textContent =
       "Net worth supports approximately " + formatCurrency(result.nwSupportedLimit) + " (" + formatCurrency(result.adjustedNetWorth) + " × 10).";
 
+    var wcDisplay = el("wcSupportDisplay");
+    var nwDisplay = el("nwSupportDisplay");
+    if (wcDisplay) wcDisplay.textContent = formatCurrency(result.wcSupportedLimit);
+    if (nwDisplay) nwDisplay.textContent = formatCurrency(result.nwSupportedLimit);
+
+    var limitAmount = el("conservativeLimitAmount");
+    if (limitAmount) limitAmount.textContent = formatLimitAmount(result.conservativeLimit);
+
     el("adjustedWorkingCapital").textContent = formatCurrency(result.adjustedWorkingCapital);
     el("adjustedNetWorth").textContent = formatCurrency(result.adjustedNetWorth);
     el("conservativeLimit").textContent = formatCurrency(result.conservativeLimit);
+
+    var ratio = getCurrentRatio(inputs);
+    var ratioEl = el("currentRatioDisplay");
+    if (ratioEl) {
+      ratioEl.textContent = ratio === null ? "—" : ratio.toFixed(1);
+      ratioEl.className = "text-xl font-semibold " + (ratio !== null && ratio >= 1.5 ? "text-success-green" : "text-slate-900");
+    }
+
+    var detailCard = el("limitingFactorCard");
+    if (detailCard) detailCard.classList.remove("hidden");
 
     el("filingGuidance").textContent = getFilingGuidance(
       inputs.transactionType,
@@ -555,10 +610,12 @@
   setRenewalCardVisible(false);
   showEmptyState();
 
-  el(ids.transactionType).addEventListener("change", function () {
-    if (el(ids.transactionType).value !== "renewal") {
-      setRenewalCardVisible(false);
-    }
+  document.querySelectorAll('input[name="transactionType"]').forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      if (getTransactionType() !== "renewal") {
+        setRenewalCardVisible(false);
+      }
+    });
   });
 
   form.addEventListener("submit", function (event) {
