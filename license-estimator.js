@@ -53,52 +53,66 @@
     }).format(safeValue);
   }
 
-  function formatNumberCommas(value) {
-    if (!Number.isFinite(value) || value === 0) return "";
-    return new Intl.NumberFormat("en-US", {
-      maximumFractionDigits: 0
-    }).format(value);
+  function digitsOnly(value) {
+    return String(value || "").replace(/\D/g, "");
+  }
+
+  function formatDigitsWithCommas(digits) {
+    if (!digits) return "";
+    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function formatMoneyDigits(digits) {
+    if (!digits) return "";
+    return formatDigitsWithCommas(digits);
   }
 
   function formatMoneyInputValue(input) {
-    var raw = input.value.trim();
-    if (raw === "") {
-      input.value = "";
-      return;
-    }
-
-    input.value = formatNumberCommas(parseMoney(raw));
+    var digits = digitsOnly(input.value);
+    input.value = formatMoneyDigits(digits);
   }
 
-  function formatMoneyInputLive(input) {
-    var start = input.selectionStart || 0;
-    var before = input.value;
-    var digitsBeforeCursor = before.slice(0, start).replace(/\D/g, "").length;
-    var digits = before.replace(/\D/g, "");
+  function caretAfterDigits(formatted, digitCount) {
+    if (digitCount <= 0) return 0;
 
-    if (digits === "") {
-      input.value = "";
-      return;
-    }
-
-    digits = digits.replace(/^0+/, "") || "0";
-    var formatted = formatNumberCommas(Number(digits));
-    input.value = formatted;
-
-    var newPos = formatted.length;
     var seen = 0;
 
     for (var i = 0; i < formatted.length; i++) {
       if (/\d/.test(formatted.charAt(i))) {
         seen += 1;
-        if (seen >= digitsBeforeCursor) {
-          newPos = i + 1;
-          break;
+        if (seen >= digitCount) {
+          return i + 1;
         }
       }
     }
 
-    input.setSelectionRange(newPos, newPos);
+    return formatted.length;
+  }
+
+  function formatMoneyInputLive(input) {
+    if (input.isComposing) return;
+
+    var start = input.selectionStart;
+    if (start === null || start === undefined) start = input.value.length;
+
+    var before = input.value;
+    var digitsBeforeCursor = digitsOnly(before.slice(0, start)).length;
+    var digits = digitsOnly(before);
+    var formatted = formatMoneyDigits(digits);
+
+    if (formatted === before) return;
+
+    input.value = formatted;
+
+    var nextPos = caretAfterDigits(formatted, digitsBeforeCursor);
+
+    requestAnimationFrame(function () {
+      try {
+        input.setSelectionRange(nextPos, nextPos);
+      } catch (err) {
+        // Ignore browsers that reject selection updates on inactive inputs.
+      }
+    });
   }
 
   function getTransactionType() {
@@ -639,12 +653,32 @@
     formatMoneyInputValue(event.target);
   }
 
-  document.querySelectorAll(".money-input").forEach(function (input) {
-    input.addEventListener("input", function (event) {
-      formatMoneyInputLive(event.target);
+  function bindMoneyInputs() {
+    form.addEventListener("input", function (event) {
+      var target = event.target;
+      if (!target.classList || !target.classList.contains("money-input")) return;
+      formatMoneyInputLive(target);
     });
-    input.addEventListener("blur", formatMoneyInput);
-  });
+
+    form.addEventListener("keyup", function (event) {
+      var target = event.target;
+      if (!target.classList || !target.classList.contains("money-input")) return;
+      formatMoneyInputLive(target);
+    });
+
+    form.addEventListener("blur", function (event) {
+      var target = event.target;
+      if (!target.classList || !target.classList.contains("money-input")) return;
+      formatMoneyInput(event);
+    }, true);
+
+    form.querySelectorAll(".money-input").forEach(function (input) {
+      input.setAttribute("inputmode", "numeric");
+      input.setAttribute("autocomplete", "off");
+    });
+  }
+
+  bindMoneyInputs();
 
   function setRenewalCardVisible(show) {
     var renewalCard = el("renewalDiscretionaryCard");
