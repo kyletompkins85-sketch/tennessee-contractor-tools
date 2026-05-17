@@ -1,5 +1,9 @@
 /* Stitch-inspired design | plain CSS, no dependencies */
 
+#renewalDiscretionaryCard[hidden] {
+  display: none !important;
+}
+
 :root {
   --surface: #f7f9fb;
   --surface-bright: #ffffff;

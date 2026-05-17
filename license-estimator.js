@@ -147,7 +147,7 @@
     }
 
     if (inputs.transactionType === "renewal") {
-      flags.push("Renewal estimates may differ from initial/increase rules.");
+      flags.push("Renewal estimates may differ from initial or increase rules.");
     }
 
     if (inputs.guarantorSupport > 0) {
@@ -247,11 +247,13 @@
 
     var renewalCard = el("renewalDiscretionaryCard");
 
-    if (inputs.transactionType === "renewal") {
-      renewalCard.classList.remove("hidden");
-      el("renewalDiscretionaryLimit").textContent = formatCurrency(result.renewalDiscretionaryLimit);
-    } else {
-      renewalCard.classList.add("hidden");
+    if (renewalCard) {
+      var showRenewal = inputs.transactionType === "renewal";
+      renewalCard.hidden = !showRenewal;
+      renewalCard.classList.toggle("hidden", !showRenewal);
+      if (showRenewal) {
+        el("renewalDiscretionaryLimit").textContent = formatCurrency(result.renewalDiscretionaryLimit);
+      }
     }
 
     var flagsWrap = el("riskFlagsWrap");
@@ -284,6 +286,21 @@
 
   document.querySelectorAll(".money-input").forEach(function (input) {
     input.addEventListener("blur", formatMoneyInput);
+  });
+
+  function setRenewalCardVisible(show) {
+    var renewalCard = el("renewalDiscretionaryCard");
+    if (!renewalCard) return;
+    renewalCard.hidden = !show;
+    renewalCard.classList.toggle("hidden", !show);
+  }
+
+  setRenewalCardVisible(false);
+
+  el(ids.transactionType).addEventListener("change", function () {
+    if (el(ids.transactionType).value !== "renewal") {
+      setRenewalCardVisible(false);
+    }
   });
 
   form.addEventListener("submit", function (event) {
