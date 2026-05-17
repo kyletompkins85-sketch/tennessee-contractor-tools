@@ -17,7 +17,7 @@
         </svg>
         <span class="brand-name">TennesseeContractorTools</span>
       </a>
-      <a class="btn btn-dark btn-sm" href="#estimator">Try estimator</a>
+      <a class="btn btn-dark btn-sm" href="license-limit-estimator/">Try estimator</a>
     </div>
   </header>
 
@@ -29,194 +29,28 @@
         before bigger jobs create bigger problems.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-dark" href="#estimator">Try the estimator</a>
+        <a class="btn btn-dark" href="license-limit-estimator/">Try the estimator</a>
         <a class="btn btn-outline" href="#upcoming">View upcoming tools</a>
       </div>
     </section>
 
-    <section id="estimator" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-      <div class="mb-8 max-w-3xl">
+    <section id="estimator" class="tool-spotlight-home mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
         <p class="mb-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
-          Tennessee Contractor License Tool
+          Available now
         </p>
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
           License Limit Estimator
         </h2>
-        <p class="mt-4 text-lg leading-8 text-slate-600">
-          Estimate whether your working capital and net worth may support a requested Tennessee contractor license monetary limit.
+        <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+          Estimate whether your working capital and net worth may support a requested Tennessee contractor license monetary limit. Includes filing guidance, risk flags, and renewal-specific estimates.
         </p>
-        <p class="mt-3 text-base leading-7 text-slate-600">
+        <p class="mt-3 max-w-2xl text-base leading-7 text-slate-600">
           Tennessee contractor limits are generally tied to the lesser of working capital and net worth, with different treatment for renewals.
         </p>
-      </div>
-
-      <div class="grid gap-8 lg:grid-cols-5">
-        <form id="tnLimitEstimatorForm" class="lg:col-span-3 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div class="sm:col-span-2">
-              <label for="transactionType" class="block text-sm font-semibold text-slate-800">
-                Transaction type
-              </label>
-              <select id="transactionType" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-                <option value="initial">Initial application</option>
-                <option value="renewal">Renewal</option>
-                <option value="increase">Increase request</option>
-              </select>
-            </div>
-
-            <div class="sm:col-span-2">
-              <label for="requestedLimit" class="block text-sm font-semibold text-slate-800">
-                Requested license limit
-              </label>
-              <input id="requestedLimit" type="text" inputmode="decimal" placeholder="$1,000,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-            </div>
-
-            <div>
-              <label for="currentAssets" class="block text-sm font-semibold text-slate-800">
-                Current assets
-              </label>
-              <input id="currentAssets" type="text" inputmode="decimal" placeholder="$150,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-            </div>
-
-            <div>
-              <label for="currentLiabilities" class="block text-sm font-semibold text-slate-800">
-                Current liabilities
-              </label>
-              <input id="currentLiabilities" type="text" inputmode="decimal" placeholder="$50,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-            </div>
-
-            <div>
-              <label for="totalAssets" class="block text-sm font-semibold text-slate-800">
-                Total assets
-              </label>
-              <input id="totalAssets" type="text" inputmode="decimal" placeholder="$300,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-            </div>
-
-            <div>
-              <label for="totalLiabilities" class="block text-sm font-semibold text-slate-800">
-                Total liabilities
-              </label>
-              <input id="totalLiabilities" type="text" inputmode="decimal" placeholder="$125,000" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-            </div>
-
-            <div>
-              <label for="agedReceivables" class="block text-sm font-semibold text-slate-800">
-                Receivables older than 90 days
-              </label>
-              <input id="agedReceivables" type="text" inputmode="decimal" placeholder="$0" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-              <p class="mt-2 text-xs leading-5 text-slate-500">
-                Subtracted from current assets for this estimate.
-              </p>
-            </div>
-
-            <div>
-              <label for="lineOfCredit" class="block text-sm font-semibold text-slate-800">
-                Line of credit amount
-              </label>
-              <input id="lineOfCredit" type="text" inputmode="decimal" placeholder="$0" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-              <p class="mt-2 text-xs leading-5 text-slate-500">
-                Added to working capital only. Counted at 50% if working capital is negative before LOC.
-              </p>
-            </div>
-
-            <div class="sm:col-span-2">
-              <label for="guarantorSupport" class="block text-sm font-semibold text-slate-800">
-                Supplemental guarantor support
-              </label>
-              <input id="guarantorSupport" type="text" inputmode="decimal" placeholder="$0" class="money-input mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10">
-              <p class="mt-2 text-xs leading-5 text-slate-500">
-                Optional. This estimator counts supplemental support at 50% toward both working capital and net worth.
-              </p>
-            </div>
-
-            <div class="sm:col-span-2 grid gap-3 rounded-2xl bg-slate-50 p-4">
-              <label class="flex gap-3 text-sm text-slate-700">
-                <input id="cashOnlyFlag" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900">
-                <span>Cash-only or no fixed assets</span>
-              </label>
-
-              <label class="flex gap-3 text-sm text-slate-700">
-                <input id="receivablesHeavyFlag" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900">
-                <span>Receivables-heavy working capital</span>
-              </label>
-
-              <label class="flex gap-3 text-sm text-slate-700">
-                <input id="experienceConcernFlag" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900">
-                <span>Requested limit may exceed demonstrated project experience</span>
-              </label>
-            </div>
-          </div>
-
-          <button type="submit" class="mt-6 w-full rounded-xl bg-slate-950 px-5 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
-            Estimate license limit
-          </button>
-        </form>
-
-        <div class="lg:col-span-2">
-          <div id="tnLimitResults" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                  Estimated result
-                </p>
-                <h3 id="resultHeadline" class="mt-2 text-2xl font-bold text-slate-950">
-                  Enter figures to estimate support
-                </h3>
-              </div>
-              <div id="confidenceBadge" class="rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
-                Confidence
-              </div>
-            </div>
-
-            <div class="mt-6 grid gap-3">
-              <div class="rounded-2xl bg-slate-50 p-4">
-                <p class="text-sm text-slate-500">Adjusted Working Capital</p>
-                <p id="adjustedWorkingCapital" class="mt-1 text-2xl font-bold text-slate-950">$0</p>
-              </div>
-
-              <div class="rounded-2xl bg-slate-50 p-4">
-                <p class="text-sm text-slate-500">Adjusted Net Worth</p>
-                <p id="adjustedNetWorth" class="mt-1 text-2xl font-bold text-slate-950">$0</p>
-              </div>
-
-              <div class="rounded-2xl bg-slate-950 p-4 text-white">
-                <p class="text-sm text-slate-300">Conservative Estimated Limit</p>
-                <p id="conservativeLimit" class="mt-1 text-3xl font-bold">$0</p>
-              </div>
-
-              <div id="renewalDiscretionaryCard" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4" hidden>
-                <p class="text-sm font-semibold text-amber-900">Renewal-only discretionary estimate</p>
-                <p id="renewalDiscretionaryLimit" class="mt-1 text-2xl font-bold text-amber-950">$0</p>
-                <p class="mt-2 text-sm leading-6 text-amber-900">
-                  This is board-discretionary and not guaranteed.
-                </p>
-              </div>
-            </div>
-
-            <div class="mt-6 rounded-2xl border border-slate-200 p-4">
-              <p class="text-sm font-semibold text-slate-900">Requested limit comparison</p>
-              <p id="comparisonText" class="mt-2 text-sm leading-6 text-slate-600">
-                Results will appear after calculation.
-              </p>
-            </div>
-
-            <div class="mt-4 rounded-2xl border border-slate-200 p-4">
-              <p class="text-sm font-semibold text-slate-900">Filing guidance</p>
-              <p id="filingGuidance" class="mt-2 text-sm leading-6 text-slate-600">
-                Based on current research, guidance will appear after calculation.
-              </p>
-            </div>
-
-            <div id="riskFlagsWrap" class="mt-4 hidden">
-              <p class="mb-2 text-sm font-semibold text-slate-900">Risk flags</p>
-              <div id="riskFlags" class="grid gap-2"></div>
-            </div>
-
-            <div class="mt-6 rounded-2xl bg-slate-50 p-4 text-xs leading-5 text-slate-600">
-              These tools produce educational planning estimates only. They are not accounting, tax, legal, or licensing advice. Tennessee licensing outcomes depend on official rules, board discretion, documentation quality, experience, and professional review.
-            </div>
-          </div>
-        </div>
+        <a class="btn btn-dark mt-8 inline-flex" href="license-limit-estimator/">
+          Open the estimator
+        </a>
       </div>
     </section>
 
@@ -328,7 +162,7 @@
       <nav class="footer-links" aria-label="Footer">
         <div class="footer-col">
           <span class="footer-col-title">Tools</span>
-          <a href="#estimator">Estimator</a>
+          <a href="license-limit-estimator/">Estimator</a>
           <a href="#upcoming">Upcoming Tools</a>
         </div>
         <div class="footer-col">
@@ -340,6 +174,5 @@
     <p class="footer-copy">&copy; 2026 Tennessee Contractor Tools. Built for high-signal operators.</p>
   </footer>
 
-  <script src="license-estimator.js"></script>
 </body>
 </html>
