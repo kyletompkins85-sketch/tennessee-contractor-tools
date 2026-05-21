@@ -115,6 +115,14 @@
 
         <form id="tnLimitEstimatorForm" class="rounded-xl border border-slate-200 bg-white p-6 shadow-subtle sm:p-8">
           <div class="space-y-8">
+            <aside class="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+              <span class="material-symbols-outlined shrink-0 text-base text-slate-500" aria-hidden="true">help</span>
+              <div>
+                <p class="text-sm font-semibold text-slate-900">Where do I find these numbers?</p>
+                <p class="mt-1 text-xs leading-5 text-secondary">Most numbers come from your business balance sheet. Older receivables usually come from an A/R aging report. Line-of-credit support usually comes from a bank letter.</p>
+              </div>
+            </aside>
+
             <div class="space-y-2">
               <span class="block text-sm font-semibold text-on-surface-variant">Transaction type</span>
               <div class="grid grid-cols-3 gap-3" role="radiogroup" aria-label="Transaction type">
@@ -144,22 +152,22 @@
               <div class="space-y-2">
                 <label class="text-sm font-semibold text-on-surface-variant" for="currentAssets">Current assets</label>
                 <input id="currentAssets" type="text" inputmode="numeric" placeholder="e.g. 150,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
-                <p class="field-hint text-xs text-slate-400">Cash, receivables, inventory. From the balance sheet, not revenue.</p>
+                <p class="field-hint text-xs text-slate-400">Find this on your business balance sheet as Total Current Assets. Do not use annual revenue.</p>
               </div>
               <div class="space-y-2">
                 <label class="text-sm font-semibold text-on-surface-variant" for="currentLiabilities">Current liabilities</label>
                 <input id="currentLiabilities" type="text" inputmode="numeric" placeholder="e.g. 50,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
-                <p class="field-hint text-xs text-slate-400">Due within about a year. Do not double-count in total liabilities.</p>
+                <p class="field-hint text-xs text-slate-400">Find this on your balance sheet as Total Current Liabilities. This usually includes bills due within about one year.</p>
               </div>
               <div class="space-y-2">
                 <label class="text-sm font-semibold text-on-surface-variant" for="totalAssets">Total assets</label>
                 <input id="totalAssets" type="text" inputmode="numeric" placeholder="e.g. 300,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
-                <p class="field-hint text-xs text-slate-400">Full statement total, including long-term assets.</p>
+                <p class="field-hint text-xs text-slate-400">Find this on your balance sheet as Total Assets.</p>
               </div>
               <div class="space-y-2">
                 <label class="text-sm font-semibold text-on-surface-variant" for="totalLiabilities">Total liabilities</label>
                 <input id="totalLiabilities" type="text" inputmode="numeric" placeholder="e.g. 125,000" class="money-input h-12 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 outline-none transition focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container" />
-                <p class="field-hint text-xs text-slate-400">All liabilities; current portion is included here.</p>
+                <p class="field-hint text-xs text-slate-400">Find this on your balance sheet as Total Liabilities.</p>
               </div>
             </div>
 
@@ -172,17 +180,17 @@
                     <span class="material-symbols-outlined text-base text-slate-400" title="Subtracted from current assets only">help</span>
                   </label>
                   <input id="agedReceivables" type="text" inputmode="numeric" placeholder="Leave blank if none" class="money-input h-10 w-full rounded-lg border border-slate-200 bg-white px-4 outline-none focus:border-on-tertiary-container" />
-                  <p class="field-hint text-xs text-slate-400">Past-due portion only. Already in current assets; do not subtract from total assets.</p>
+                  <p class="field-hint text-xs text-slate-400">Use your accounts receivable aging report. Enter only invoices more than 90 days old that are already included in current assets.</p>
                 </div>
                 <div class="space-y-2">
                   <label class="text-sm font-semibold text-on-surface-variant" for="lineOfCredit">Line of credit</label>
                   <input id="lineOfCredit" type="text" inputmode="numeric" placeholder="Leave blank if none" class="money-input h-10 w-full rounded-lg border border-slate-200 bg-white px-4 outline-none focus:border-on-tertiary-container" />
-                  <p class="field-hint text-xs text-slate-400">Unused credit for the filing. Adds to working capital only; half may count if WC is negative first.</p>
+                  <p class="field-hint text-xs text-slate-400">Use the unused amount still available to borrow, not the amount already drawn.</p>
                 </div>
                 <div class="space-y-2 md:col-span-2">
                   <label class="text-sm font-semibold text-on-surface-variant" for="guarantorSupport">Supplemental guarantor support</label>
                   <input id="guarantorSupport" type="text" inputmode="numeric" placeholder="Leave blank if none" class="money-input h-10 w-full rounded-lg border border-slate-200 bg-white px-4 outline-none focus:border-on-tertiary-container" />
-                  <p class="field-hint text-xs text-slate-400">Gross documented support. Counted at 50% toward both working capital and net worth.</p>
+                  <p class="field-hint text-xs text-slate-400">Optional documented support from a personal or parent-company guaranty. This estimator counts the entered amount at 50%.</p>
                 </div>
               </div>
             </div>
